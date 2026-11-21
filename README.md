@@ -51,7 +51,7 @@ numbered automatically. Copy the third block (it has no figure) and edit it:
   `<span class="status is-review">Under review</span>` (shown in the accent colour).
 - **One summary paragraph** per paper keeps the desktop layout tidy.
 - **Figure** (optional): add a `<figure class="fig">` with an inline `<svg>` and a `<figcaption>` after
-  the summary, as in the first two papers. It is a schematic drawn for this page. Figures are numbered automatically (Fig. 1, Fig. 2, ...), so copying, reordering or
+  the summary, as in the first two papers. It is either a schematic drawn for this page or, like Fig. 2 (the faces), generated from the paper's data: that one comes from `paper/scripts/make_faces_web.py` in the paper's own repo, which prints the `<figure>` and the `fc-*` CSS at the end of `style.css`; rerun it rather than editing by hand. Figures are numbered automatically (Fig. 1, Fig. 2, ...), so copying, reordering or
   deleting papers never misnumbers them. Draw with the `f-*` classes in `style.css` so the figure
   follows the light/dark theme, give the `<svg>` `role="img"` and an `aria-label`, and keep labels as
   live `<text>`.

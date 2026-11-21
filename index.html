@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;1,400&family=Public+Sans:wght@500&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@72,300&text=Huangsheng%20Gan&display=swap">
   </noscript>
-  <link rel="stylesheet" href="style.css?v=2026-11-22">
+  <link rel="stylesheet" href="style.css?v=2026-11-22c">
 
   <script type="application/ld+json">
   {
@@ -131,7 +131,8 @@
     </section>
 
     <!-- Research: one <li class="entry"> per paper, numbered automatically. Each paper shows a short descriptive
-         title and a one-paragraph summary written for this page; figures are schematics drawn for this page.
+         title and a one-paragraph summary written for this page; figures are either schematics drawn for this page with the f-* classes
+         or, like the faces figure, generated from a paper's data by a script kept with that paper.
          At publication, add the venue and the arXiv link.
          To add a paper, copy the third <li> block (it has no figure) and edit it. Keep one summary paragraph.
            status  <span class="status">In preparation</span>, <span class="status">Manuscript</span>, or
@@ -176,28 +177,129 @@
           <h3>Group differences in LLM survey simulations</h3>
           <p class="meta"><span class="status">In preparation</span> · 2026</p>
           <p>When language models answer surveys in place of people, they tend to erase differences in how groups respond to the same intervention. Comparing models before and after <span class="nowrap">post-training</span> suggests that this stage does not create the pattern and does not reliably undo it.</p>
-          <figure class="fig">
-            <svg viewBox="0 10 272 164" width="272" height="164" role="img" aria-label="Schematic chart: across attitude groups, the effect on people runs from positive to negative, while simulated respondents’ effects stay flat.">
-              <path class="f-zero" d="M30 90H266"/>
-              <text class="f-math f-up f-mute" x="16" y="42" text-anchor="middle">+</text>
-              <text class="f-math f-up f-mute" x="16" y="94" text-anchor="middle">0</text>
-              <text class="f-math f-up f-mute" x="16" y="146" text-anchor="middle">−</text>
-              <path class="f-line" d="M44 36L98 63L152 90L206 117L260 144"/>
-              <path class="f-line f-line-acc" d="M44 80H260"/>
-              <g class="f-dot"><circle cx="44" cy="36" r="3.4"/><circle cx="98" cy="63" r="3.4"/><circle cx="152" cy="90" r="3.4"/><circle cx="206" cy="117" r="3.4"/><circle cx="260" cy="144" r="3.4"/></g>
-              <g class="f-hollow"><circle cx="44" cy="80" r="3.4"/><circle cx="98" cy="80" r="3.4"/><circle cx="152" cy="80" r="3.4"/><circle cx="206" cy="80" r="3.4"/><circle cx="260" cy="80" r="3.4"/></g>
-              <text class="f-word" x="54" y="31">Human</text>
-              <text class="f-word f-acc" x="262" y="68" text-anchor="end">Simulated</text>
-              <text class="f-word f-mute" x="152" y="170" text-anchor="middle">Attitude groups</text>
+          <figure class="fig faces">
+            <svg viewBox="0 0 250 305" role="img" aria-label="People, from opposed to in favour of mandates: +4.7, +2.1, +1.0, −0.1, −1.2 and −2.6 points. Tülu 3 8B final (after post-training), r = 0.29: +2.3, +1.7, +1.6, +1.2, +0.7 and +0.2. OLMo 2 7B final (after post-training), r = 0.20: +2.5, +1.7, +1.6, +1.4, +1.4 and +1.0. OLMo 3 7B DPO (last stage passing our readout checks), r = 0.00: −0.3, −0.2, −0.1, −0.2, −0.2 and −0.3. The effect reverses for people but in no simulated row (exploratory).">
+              <!-- People -->
+              <text class="fc-name" x="0" y="11">People</text>
+              <text class="fc-note" x="250" y="11" text-anchor="end">German respondents</text>
+              <circle class="fc-disc fc-up" style="--a:1" fill="#a81f1f" cx="16.5" cy="34" r="16"/>
+              <circle class="fc-eye fc-strong" cx="11.17" cy="31.04" r="1.66"/><circle class="fc-eye fc-strong" cx="21.83" cy="31.04" r="1.66"/>
+              <path class="fc-mark fc-strong" fill="none" stroke="currentColor" d="M7.61 25.7L14.13 29.85M25.39 25.7L18.87 29.85M9.98 41.11C16.5 31.63 16.5 31.63 23.02 41.11"/>
+              <text class="fc-val" x="16.5" y="63" text-anchor="middle">+4.7</text>
+              <circle class="fc-disc fc-up" style="--a:.454" fill="#d1918c" cx="59.9" cy="34" r="16"/>
+              <circle class="fc-eye" cx="54.57" cy="31.04" r="1.66"/><circle class="fc-eye" cx="65.23" cy="31.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M51.01 25.7L57.53 27.59M68.79 25.7L62.27 27.59M53.38 41.11C59.9 37.45 59.9 37.45 66.42 41.11"/>
+              <text class="fc-val" x="59.9" y="63" text-anchor="middle">+2.1</text>
+              <circle class="fc-disc fc-up" style="--a:.207" fill="#e4c4bd" cx="103.3" cy="34" r="16"/>
+              <circle class="fc-eye" cx="97.97" cy="31.04" r="1.66"/><circle class="fc-eye" cx="108.63" cy="31.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M94.41 25.7L100.93 26.56M112.19 25.7L105.67 26.56M96.78 41.11C103.3 40.09 103.3 40.09 109.82 41.11"/>
+              <text class="fc-val" x="103.3" y="63" text-anchor="middle">+1.0</text>
+              <circle class="fc-disc fc-dn" style="--a:.015" fill="#f1ede5" cx="146.7" cy="34" r="16"/>
+              <circle class="fc-eye" cx="141.37" cy="31.04" r="1.66"/><circle class="fc-eye" cx="152.03" cy="31.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M137.81 25.7L144.33 25.7M155.59 25.7L149.07 25.7M140.18 41.11C146.7 42.46 146.7 42.46 153.22 41.11"/>
+              <text class="fc-val" x="146.7" y="63" text-anchor="middle">−0.1</text>
+              <circle class="fc-disc fc-dn" style="--a:.261" fill="#bdc9d6" cx="190.1" cy="34" r="16"/>
+              <circle class="fc-eye" cx="184.77" cy="31.04" r="1.66"/><circle class="fc-eye" cx="195.43" cy="31.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M181.21 25.7L187.73 25.7M198.99 25.7L192.47 25.7M183.58 41.11C190.1 45.07 190.1 45.07 196.62 41.11"/>
+              <text class="fc-val" x="190.1" y="63" text-anchor="middle">−1.2</text>
+              <circle class="fc-disc fc-dn" style="--a:.558" fill="#7d9fc3" cx="233.5" cy="34" r="16"/>
+              <circle class="fc-eye" cx="228.17" cy="31.04" r="1.66"/><circle class="fc-eye" cx="238.83" cy="31.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M224.61 25.7L231.13 25.7M242.39 25.7L235.87 25.7M226.98 41.11C233.5 48.25 233.5 48.25 240.02 41.11"/>
+              <text class="fc-val" x="233.5" y="63" text-anchor="middle">−2.6</text>
+              <!-- Tülu 3 8B final -->
+              <text class="fc-name" x="0" y="81">Tülu 3 8B final</text>
+              <text class="fc-r" x="250" y="81" text-anchor="end"><tspan>r</tspan> = 0.29</text>
+              <circle class="fc-disc fc-up" style="--a:.495" fill="#ce8883" cx="16.5" cy="104" r="16"/>
+              <circle class="fc-eye" cx="11.17" cy="101.04" r="1.66"/><circle class="fc-eye" cx="21.83" cy="101.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M7.61 95.7L14.13 97.76M25.39 95.7L18.87 97.76M9.98 111.11C16.5 107.01 16.5 107.01 23.02 111.11"/>
+              <text class="fc-val" x="16.5" y="133" text-anchor="middle">+2.3</text>
+              <circle class="fc-disc fc-up" style="--a:.359" fill="#d9a49f" cx="59.9" cy="104" r="16"/>
+              <circle class="fc-eye" cx="54.57" cy="101.04" r="1.66"/><circle class="fc-eye" cx="65.23" cy="101.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M51.01 95.7L57.53 97.19M68.79 95.7L62.27 97.19M53.38 111.11C59.9 108.47 59.9 108.47 66.42 111.11"/>
+              <text class="fc-val" x="59.9" y="133" text-anchor="middle">+1.7</text>
+              <circle class="fc-disc fc-up" style="--a:.344" fill="#daa7a2" cx="103.3" cy="104" r="16"/>
+              <circle class="fc-eye" cx="97.97" cy="101.04" r="1.66"/><circle class="fc-eye" cx="108.63" cy="101.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M94.41 95.7L100.93 97.13M112.19 95.7L105.67 97.13M96.78 111.11C103.3 108.63 103.3 108.63 109.82 111.11"/>
+              <text class="fc-val" x="103.3" y="133" text-anchor="middle">+1.6</text>
+              <circle class="fc-disc fc-up" style="--a:.257" fill="#e0bab3" cx="146.7" cy="104" r="16"/>
+              <circle class="fc-eye" cx="141.37" cy="101.04" r="1.66"/><circle class="fc-eye" cx="152.03" cy="101.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M137.81 95.7L144.33 96.77M155.59 95.7L149.07 96.77M140.18 111.11C146.7 109.56 146.7 109.56 153.22 111.11"/>
+              <text class="fc-val" x="146.7" y="133" text-anchor="middle">+1.2</text>
+              <circle class="fc-disc fc-up" style="--a:.147" fill="#e9d0c9" cx="190.1" cy="104" r="16"/>
+              <circle class="fc-eye" cx="184.77" cy="101.04" r="1.66"/><circle class="fc-eye" cx="195.43" cy="101.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M181.21 95.7L187.73 96.31M198.99 95.7L192.47 96.31M183.58 111.11C190.1 110.73 190.1 110.73 196.62 111.11"/>
+              <text class="fc-val" x="190.1" y="133" text-anchor="middle">+0.7</text>
+              <circle class="fc-disc fc-up" style="--a:.042" fill="#f1e6de" cx="233.5" cy="104" r="16"/>
+              <circle class="fc-eye" cx="228.17" cy="101.04" r="1.66"/><circle class="fc-eye" cx="238.83" cy="101.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M224.61 95.7L231.13 95.88M242.39 95.7L235.87 95.88M226.98 111.11C233.5 111.85 233.5 111.85 240.02 111.11"/>
+              <text class="fc-val" x="233.5" y="133" text-anchor="middle">+0.2</text>
+              <!-- OLMo 2 7B final -->
+              <text class="fc-name" x="0" y="151">OLMo 2 7B final</text>
+              <text class="fc-r" x="250" y="151" text-anchor="end"><tspan>r</tspan> = 0.20</text>
+              <circle class="fc-disc fc-up" style="--a:.533" fill="#cc807c" cx="16.5" cy="174" r="16"/>
+              <circle class="fc-eye" cx="11.17" cy="171.04" r="1.66"/><circle class="fc-eye" cx="21.83" cy="171.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M7.61 165.7L14.13 167.91M25.39 165.7L18.87 167.91M9.98 181.11C16.5 176.61 16.5 176.61 23.02 181.11"/>
+              <text class="fc-val" x="16.5" y="203" text-anchor="middle">+2.5</text>
+              <circle class="fc-disc fc-up" style="--a:.371" fill="#d8a29c" cx="59.9" cy="174" r="16"/>
+              <circle class="fc-eye" cx="54.57" cy="171.04" r="1.66"/><circle class="fc-eye" cx="65.23" cy="171.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M51.01 165.7L57.53 167.24M68.79 165.7L62.27 167.24M53.38 181.11C59.9 178.34 59.9 178.34 66.42 181.11"/>
+              <text class="fc-val" x="59.9" y="203" text-anchor="middle">+1.7</text>
+              <circle class="fc-disc fc-up" style="--a:.341" fill="#daa8a2" cx="103.3" cy="174" r="16"/>
+              <circle class="fc-eye" cx="97.97" cy="171.04" r="1.66"/><circle class="fc-eye" cx="108.63" cy="171.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M94.41 165.7L100.93 167.12M112.19 165.7L105.67 167.12M96.78 181.11C103.3 178.66 103.3 178.66 109.82 181.11"/>
+              <text class="fc-val" x="103.3" y="203" text-anchor="middle">+1.6</text>
+              <circle class="fc-disc fc-up" style="--a:.296" fill="#ddb1ab" cx="146.7" cy="174" r="16"/>
+              <circle class="fc-eye" cx="141.37" cy="171.04" r="1.66"/><circle class="fc-eye" cx="152.03" cy="171.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M137.81 165.7L144.33 166.93M155.59 165.7L149.07 166.93M140.18 181.11C146.7 179.14 146.7 179.14 153.22 181.11"/>
+              <text class="fc-val" x="146.7" y="203" text-anchor="middle">+1.4</text>
+              <circle class="fc-disc fc-up" style="--a:.308" fill="#ddafa9" cx="190.1" cy="174" r="16"/>
+              <circle class="fc-eye" cx="184.77" cy="171.04" r="1.66"/><circle class="fc-eye" cx="195.43" cy="171.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M181.21 165.7L187.73 166.98M198.99 165.7L192.47 166.98M183.58 181.11C190.1 179.02 190.1 179.02 196.62 181.11"/>
+              <text class="fc-val" x="190.1" y="203" text-anchor="middle">+1.4</text>
+              <circle class="fc-disc fc-up" style="--a:.217" fill="#e4c2bb" cx="233.5" cy="174" r="16"/>
+              <circle class="fc-eye" cx="228.17" cy="171.04" r="1.66"/><circle class="fc-eye" cx="238.83" cy="171.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M224.61 165.7L231.13 166.6M242.39 165.7L235.87 166.6M226.98 181.11C233.5 179.98 233.5 179.98 240.02 181.11"/>
+              <text class="fc-val" x="233.5" y="203" text-anchor="middle">+1.0</text>
+              <!-- OLMo 3 7B DPO -->
+              <text class="fc-name" x="0" y="221">OLMo 3 7B DPO</text>
+              <text class="fc-r" x="250" y="221" text-anchor="end"><tspan>r</tspan> = 0.00</text>
+              <circle class="fc-disc fc-dn" style="--a:.058" fill="#e8e7e2" cx="16.5" cy="244" r="16"/>
+              <circle class="fc-eye" cx="11.17" cy="241.04" r="1.66"/><circle class="fc-eye" cx="21.83" cy="241.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M7.61 235.7L14.13 235.7M25.39 235.7L18.87 235.7M9.98 251.11C16.5 252.92 16.5 252.92 23.02 251.11"/>
+              <text class="fc-val" x="16.5" y="273" text-anchor="middle">−0.3</text>
+              <circle class="fc-disc fc-dn" style="--a:.033" fill="#edeae4" cx="59.9" cy="244" r="16"/>
+              <circle class="fc-eye" cx="54.57" cy="241.04" r="1.66"/><circle class="fc-eye" cx="65.23" cy="241.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M51.01 235.7L57.53 235.7M68.79 235.7L62.27 235.7M53.38 251.11C59.9 252.65 59.9 252.65 66.42 251.11"/>
+              <text class="fc-val" x="59.9" y="273" text-anchor="middle">−0.2</text>
+              <circle class="fc-disc fc-dn" style="--a:.022" fill="#efece5" cx="103.3" cy="244" r="16"/>
+              <circle class="fc-eye" cx="97.97" cy="241.04" r="1.66"/><circle class="fc-eye" cx="108.63" cy="241.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M94.41 235.7L100.93 235.7M112.19 235.7L105.67 235.7M96.78 251.11C103.3 252.53 103.3 252.53 109.82 251.11"/>
+              <text class="fc-val" x="103.3" y="273" text-anchor="middle">−0.1</text>
+              <circle class="fc-disc fc-dn" style="--a:.033" fill="#edeae4" cx="146.7" cy="244" r="16"/>
+              <circle class="fc-eye" cx="141.37" cy="241.04" r="1.66"/><circle class="fc-eye" cx="152.03" cy="241.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M137.81 235.7L144.33 235.7M155.59 235.7L149.07 235.7M140.18 251.11C146.7 252.64 146.7 252.64 153.22 251.11"/>
+              <text class="fc-val" x="146.7" y="273" text-anchor="middle">−0.2</text>
+              <circle class="fc-disc fc-dn" style="--a:.047" fill="#eae8e3" cx="190.1" cy="244" r="16"/>
+              <circle class="fc-eye" cx="184.77" cy="241.04" r="1.66"/><circle class="fc-eye" cx="195.43" cy="241.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M181.21 235.7L187.73 235.7M198.99 235.7L192.47 235.7M183.58 251.11C190.1 252.8 190.1 252.8 196.62 251.11"/>
+              <text class="fc-val" x="190.1" y="273" text-anchor="middle">−0.2</text>
+              <circle class="fc-disc fc-dn" style="--a:.068" fill="#e6e5e2" cx="233.5" cy="244" r="16"/>
+              <circle class="fc-eye" cx="228.17" cy="241.04" r="1.66"/><circle class="fc-eye" cx="238.83" cy="241.04" r="1.66"/>
+              <path class="fc-mark" fill="none" stroke="currentColor" d="M224.61 235.7L231.13 235.7M242.39 235.7L235.87 235.7M226.98 251.11C233.5 253.02 233.5 253.02 240.02 251.11"/>
+              <text class="fc-val" x="233.5" y="273" text-anchor="middle">−0.3</text>
+              <path class="fc-axis" fill="none" stroke="currentColor" d="M0.5 286H244"/>
+              <path class="fc-head" d="M250 286l-7 -3.3v6.6z"/>
+              <text class="fc-note" x="0" y="301">opposed</text>
+              <text class="fc-note" x="250" y="301" text-anchor="end">in favour of mandates</text>
             </svg>
-            <figcaption><b>Differences, flattened.</b> Schematic. Across attitude groups the effect on people runs from positive to negative; simulated respondents stay flat.</figcaption>
+            <figcaption><b>Simulated respondents miss a reversal.</b> Faces: German respondents by attitude to mandates; red frowns, a mandate raised reactance, blue smiles, lowered it (points vs voluntary). Lower rows: each model’s last stage passing our readout checks; <span class="math"><i>r</i></span>, simulated over human trend across faces. Exploratory.</figcaption>
           </figure>
         </li>
 
         <li class="entry">
           <h3>Do LLM assistants act on what they remember about users?</h3>
           <p class="meta"><span class="status">Manuscript</span> · 2026</p>
-          <p>Models that remember details about their users can repeat them back when asked, yet seldom act on them when a new request quietly calls for it.&nbsp;I&nbsp;suggest simple checks for whether a model is truly drawing on what it remembers, rather than giving advice that would suit anyone or simply reacting to a longer prompt.</p>
+          <p>Models that remember details about their users can repeat them back when asked, yet seldom act on them when a new request quietly calls for it. I&nbsp;suggest simple checks for whether a model is truly drawing on what it remembers, rather than giving advice that would suit anyone or simply reacting to a longer prompt.</p>
         </li>
       </ol>
     </section>

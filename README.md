@@ -13,14 +13,14 @@ Plain HTML + CSS, no build step. Open `index.html` in a browser to preview.
 
 ## Editing the page
 
-- **GitHub username** appears seven times in five places: the header, the introduction, Projects (the
-  DeepFM project's "Code" link, inside its repository URL), Contact, and `"sameAs"` in the JSON-LD
-  block in `<head>`; the introduction and Contact also show it as link text. Search and replace
+- **GitHub username** appears five times in four places: the header, the introduction, Projects (the
+  DeepFM project's "Code" link, inside its repository URL) and `"sameAs"` in the JSON-LD
+  block in `<head>`; the introduction also shows it as link text. Search and replace
   `forrest-gan2005`.
-- **Email addresses**. The main address, `ForrestGan1103@outlook.com`, appears six times in four
-  places: the header, the introduction, Contact (the last two also show it as link text) and `"email"`
-  in the JSON-LD block. The UNSW address, `z5616333@ad.unsw.edu.au`, appears five times in three
-  places: the introduction and Contact (as link and as link text, labelled "UNSW") and `"email"` in the
+- **Email addresses**. The main address, `ForrestGan1103@outlook.com`, appears four times in three
+  places: the header, the introduction (which also shows it as link text) and `"email"`
+  in the JSON-LD block. The UNSW address, `z5616333@ad.unsw.edu.au`, appears three times in two
+  places: the introduction (as link and as link text, labelled "UNSW") and `"email"` in the
   JSON-LD block, which lists both addresses. Search and replace an address to change it.
 - **Links to other sites** (GitHub, Code) end in a small drawn arrow,
   `<span class="ext" aria-hidden="true">…</span>`, inside the link. Copy it from an existing link;

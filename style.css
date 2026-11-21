@@ -339,6 +339,20 @@ main { counter-reset: fig; }
 .colophon p { padding-top: 1.25rem; border-top: 1px solid var(--rule); }
 
 /* ---------- Motion and print ---------- */
+/* Each element moves once, then stays (the motion script at the end of index.html draws the figures). Nothing is
+   hidden unless the <head> script has set .motion, so the page renders fully without JavaScript, with reduced
+   motion and in print. Only opacity and transform change, so nothing shifts the layout. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  /* Entrance: the name, then the role and dek, the lede and the contact list; done within about 0.9 s */
+  .motion .intro > * { animation: rise .6s cubic-bezier(.2, .6, .3, 1) backwards; }
+  .motion .intro > .role, .motion .intro > .dek { animation-delay: .1s; }
+  .motion .intro > .lede { animation-delay: .2s; }
+  .motion .intro > .reach { animation-delay: .3s; }
+  /* Sections fade in as they come into view; figures stay blank until they draw themselves */
+  .motion .section:not(.in), .motion .fig svg:not(.in) { opacity: 0; }
+  .motion .section.in { animation: rise .6s cubic-bezier(.2, .6, .3, 1) backwards; }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }

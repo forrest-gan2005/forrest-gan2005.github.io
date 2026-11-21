@@ -72,6 +72,30 @@ The switch in the header offers Auto (follow the system), Light and Dark. A choi
 `localStorage` and applied by the small script in `<head>` before the page is drawn, so there is no
 flash; Auto removes the saved choice. The page renders fully without JavaScript.
 
+## Motion
+
+A little motion, each piece once, then nothing moves:
+
+- **On load** the name, the role and dek, the lede and the contact list rise in one after another
+  (done within about 0.9 s), with any section already on screen just after.
+- **On scroll** each section fades in once as it comes into view.
+- **Figures** draw themselves once in view: Fig. 1 when half of it is, Fig. 2 when its top fifth is.
+  Fig. 1: the radius and both arcs with their labels, then the equal η steps, then the angle on the outer
+  circle (θ) and last the one on the inner circle (3θ); the timing is in its markup
+  (`data-draw="delay duration"` on a path with `pathLength="1"`, `data-fade="delay duration"` on other
+  parts, in ms). Fig. 2 (the faces): the People row on its own, left to right, then the model rows
+  briskly one after another, each row's r last; its timing is in the motion script, so regenerating the
+  figure keeps it.
+
+The CSS is under "Motion and print" in `style.css`; the script is the second one at the end of
+`index.html`. Nothing is hidden unless that script can run, so the page shows in full without JavaScript,
+in print, and with the system setting for reduced motion, which turns all motion off. Automated browsers
+and crawlers (`navigator.webdriver`, or a user agent with bot, crawl, spider, headless, lighthouse or
+preview in it) get no motion either, so screenshots and indexers see the whole page; a headless capture
+that should show the motion has to override both. A section that receives keyboard focus shows at once.
+To turn it off for everyone, delete the `if("IntersectionObserver"…)` part of the `<head>` script
+(then nothing is ever hidden and the motion script does nothing).
+
 ## Hosting
 
 GitHub Pages, from the `main` branch of `forrest-gan2005/forrest-gan2005.github.io`, with the custom

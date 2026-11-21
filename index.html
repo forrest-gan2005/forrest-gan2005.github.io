@@ -24,8 +24,13 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23a3361d'/%3E%3Cpath fill='%23f7f4ee' d='M14.4 41.3 16.9 42.1V42.9H8.5V42.1L11 41.3V23.4L8.5 22.6V21.8H16.9V22.6L14.4 23.4ZM28.9 41.3 31.4 42.1V42.9H23V42.1L25.5 41.3V23.4L23 22.6V21.8H31.4V22.6L28.9 23.4ZM12.4 33V31.2H27.5V33Z M53.4 40 54 41.3V41.6Q52.9 42.1 51.6 42.5Q50.3 42.9 48.8 43.1Q47.4 43.3 45.9 43.3Q43.1 43.3 40.9 42.5Q38.7 41.8 37.1 40.4Q35.5 39.1 34.7 37.1Q33.9 35.1 33.9 32.5Q33.9 29.1 35.4 26.6Q36.8 24.1 39.6 22.8Q42.4 21.4 46.3 21.4Q47.5 21.4 48.5 21.6Q49.6 21.7 50.9 22L49.8 22.2L51.7 20.7H52.4L53.2 28.3L52.1 28.4L49.4 23.3L50.9 24.9Q49.7 24 48.4 23.6Q47.2 23.2 45.7 23.2Q43.6 23.2 42.1 23.8Q40.6 24.3 39.5 25.4Q38.5 26.4 38 28Q37.5 29.5 37.5 31.5Q37.5 34.7 38.6 36.9Q39.7 39.2 41.6 40.3Q43.5 41.4 46 41.4Q47 41.4 48 41.3Q49 41.1 49.9 40.8Q50.7 40.4 51.3 39.9L50 42.1V35L47.1 34.2V33.3H55.5V34.2L53.4 35Z'/%3E%3C/svg%3E">
 
   <!-- Colour theme: apply a saved Light/Dark choice before first paint (no flash).
-       With no saved choice, or without JavaScript, the page follows the system setting. -->
-  <script>(function(d){d.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.setAttribute("data-theme",t)}catch(e){}})(document.documentElement)</script>
+       With no saved choice, or without JavaScript, the page follows the system setting.
+       Motion: .motion lets style.css hide what will fade in. It is set only when the browser can run the motion
+       script at the end of this file (IntersectionObserver, Web Animations) and reports no preference for reduced
+       motion, and not for automated browsers and crawlers, which then capture the whole page. If that script has not
+       started within 3 s (an error, a slow load), .motion goes and everything shows. -->
+  <script>(function(d){d.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.setAttribute("data-theme",t)}catch(e){}
+  if("IntersectionObserver"in window&&d.animate&&matchMedia("(prefers-reduced-motion: no-preference)").matches&&!navigator.webdriver&&!/bot|crawl|spider|slurp|headless|lighthouse|preview/i.test(navigator.userAgent)){d.classList.add("motion");setTimeout(function(){if(!d.classList.contains("motion-ready"))d.classList.remove("motion")},3000)}})(document.documentElement)</script>
 
   <!-- Fonts: Newsreader (roman and italic, 400) and Public Sans 500 for small capitals.
        The second link is the light display cut of Newsreader, subset to the letters of the name (about 2 kB):
@@ -154,20 +159,22 @@
           <p>Pretraining choices such as weight decay change the overall scale of a model’s parameters, so the same fine-tuning learning rate amounts to a different effective step for each model. That can make one starting model look better than another for reasons unrelated to what it learned, and it tracks how much each one forgets.</p>
           <figure class="fig">
             <svg viewBox="0 60 272 146" width="272" height="146" role="img" aria-label="Diagram: two concentric circles, the inner radius a third of the outer. Arrows of equal length at the edge of each sweep an angle three times wider on the inner circle.">
-              <path class="f-wash" d="M14 178H86A72 72 0 0 0 78.4 145.8ZM86 178H230A216 216 0 0 0 227.1 142.5L85 166.2A72 72 0 0 1 86 178Z"/>
-              <path class="f-guide" d="M230 178A216 216 0 0 0 195.2 60.4M86 178A72 72 0 0 0 62.2 124.5"/>
-              <path class="f-tick" d="M237.9 170.2L241.4 170.1M237.5 162.4L240.9 162.1M236.8 154.6L240.3 154.2M235.8 146.8L239.3 146.3M234.6 139.1L241.5 137.9M233.1 131.4L236.5 130.7M231.3 123.8L234.7 123.0M229.3 116.3L232.7 115.3M227.0 108.8L230.4 107.7M224.5 101.4L231.1 99.0M221.7 94.1L224.9 92.8M218.6 86.9L221.8 85.5M215.3 79.8L218.5 78.3M211.8 72.8L214.9 71.2M208.0 66.0L214.1 62.5"/>
-              <path class="f-ray" d="M14 178L240.9 140.2M14 178L219.7 75.1"/>
-              <path class="f-axis" d="M14 178H230"/>
-              <circle class="f-dot" cx="14" cy="178" r="1.8"/><circle class="f-dot" cx="86" cy="178" r="2.4"/><circle class="f-dot" cx="230" cy="178" r="2.4"/>
-              <path class="f-step" d="M230 178V148.5M86 178V148.5"/>
-              <path class="f-head" d="M230 142L226.7 149H233.3ZM86 142L82.7 149H89.3Z"/>
-              <text class="f-math f-acc" x="224" y="161" text-anchor="end">η</text>
-              <text class="f-math f-acc" x="80" y="161" text-anchor="end">η</text>
-              <text class="f-math" x="252.7" y="142.7" text-anchor="middle">θ</text>
-              <text class="f-math" x="231.3" y="73.8" text-anchor="middle"><tspan class="f-up">3</tspan>θ</text>
-              <text class="f-math" x="86" y="197" text-anchor="middle"><tspan class="f-up">‖</tspan>W<tspan class="f-up">‖/3</tspan></text>
-              <text class="f-math" x="230" y="197" text-anchor="middle"><tspan class="f-up">‖</tspan>W<tspan class="f-up">‖</tspan></text>
+              <path class="f-wash" data-fade="1300 350" d="M14 178H86A72 72 0 0 0 78.4 145.8Z"/><path class="f-wash" data-fade="1150 350" d="M86 178H230A216 216 0 0 0 227.1 142.5L85 166.2A72 72 0 0 1 86 178Z"/>
+              <path class="f-guide" pathLength="1" data-draw="390 480" d="M230 178A216 216 0 0 0 195.2 60.4"/>
+              <path class="f-guide" pathLength="1" data-draw="160 400" d="M86 178A72 72 0 0 0 62.2 124.5"/>
+              <path class="f-tick" data-fade="700 300" d="M237.9 170.2L241.4 170.1M237.5 162.4L240.9 162.1M236.8 154.6L240.3 154.2M235.8 146.8L239.3 146.3M234.6 139.1L241.5 137.9M233.1 131.4L236.5 130.7M231.3 123.8L234.7 123.0M229.3 116.3L232.7 115.3M227.0 108.8L230.4 107.7M224.5 101.4L231.1 99.0M221.7 94.1L224.9 92.8M218.6 86.9L221.8 85.5M215.3 79.8L218.5 78.3M211.8 72.8L214.9 71.2M208.0 66.0L214.1 62.5"/>
+              <path class="f-ray" data-fade="1150 350" d="M14 178L240.9 140.2"/><path class="f-ray" data-fade="1300 350" d="M14 178L219.7 75.1"/>
+              <path class="f-axis" pathLength="1" data-draw="0 400" d="M14 178H230"/>
+              <circle class="f-dot" data-fade="0 300" cx="14" cy="178" r="1.8"/><circle class="f-dot" data-fade="150 250" cx="86" cy="178" r="2.4"/><circle class="f-dot" data-fade="370 250" cx="230" cy="178" r="2.4"/>
+              <path class="f-step" pathLength="1" data-draw="800 350" d="M230 178V148.5"/>
+              <path class="f-step" pathLength="1" data-draw="800 350" d="M86 178V148.5"/>
+              <path class="f-head" data-fade="1050 150" d="M230 142L226.7 149H233.3ZM86 142L82.7 149H89.3Z"/>
+              <text class="f-math f-acc" data-fade="950 300" x="224" y="161" text-anchor="end">η</text>
+              <text class="f-math f-acc" data-fade="950 300" x="80" y="161" text-anchor="end">η</text>
+              <text class="f-math" data-fade="1150 350" x="252.7" y="142.7" text-anchor="middle">θ</text>
+              <text class="f-math" data-fade="1300 350" x="231.3" y="73.8" text-anchor="middle"><tspan class="f-up">3</tspan>θ</text>
+              <text class="f-math" data-fade="400 350" x="86" y="197" text-anchor="middle"><tspan class="f-up">‖</tspan>W<tspan class="f-up">‖/3</tspan></text>
+              <text class="f-math" data-fade="400 350" x="230" y="197" text-anchor="middle"><tspan class="f-up">‖</tspan>W<tspan class="f-up">‖</tspan></text>
             </svg>
             <figcaption><b>Same update, different angle.</b> A matrix followed by a normalization layer is scale-invariant, so an update of length <span class="math"><i>η</i></span> rotates it by an angle <span class="math"><i>θ</i> ≈ <i>η</i>/‖<i>W</i>‖</span>.</figcaption>
           </figure>
@@ -374,6 +381,90 @@
     });
 
     apply(root.getAttribute('data-theme') || 'auto');
+  })();
+  </script>
+
+  <!-- Motion, once per element: the introduction rises in on load (style.css), each section fades in as it comes
+       into view, and each figure draws itself. Runs only when the <head> script has set .motion; on any error,
+       for printing, or if reduced motion is switched on, everything shows at once. A section that receives keyboard
+       focus shows at once, so focus never lands on something still faded out.
+       In a drawn figure, data-draw="delay duration" draws a path like a pen (it needs pathLength="1" and one stroke
+       per path: browsers differ on dashes across subpaths) and data-fade="delay duration" fades a part in;
+       times in ms from when the figure comes into view.
+       The faces figure is generated, so its timing is set here: the People row on its own, face by face from left
+       to right, then the model rows briskly one after another, each row's r once its faces are in. -->
+  <script>
+  (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains('motion')) return;
+    var calm = matchMedia('(prefers-reduced-motion: reduce)');
+    var running = [], first = true, n = 0, io;
+
+    function reveal() {
+      root.classList.remove('motion');
+      if (io) io.disconnect();
+      running.forEach(function (a) { a.finish(); a.onfinish(); });
+      running = [];
+    }
+
+    function play(svg, lead) {
+      svg.classList.add('in');
+      var faces = svg.parentNode.classList.contains('faces'), row = -1, i = -1, start = 0, gap = 0, origin;
+      [].forEach.call(svg.children, function (el) {
+        var c = el.className.baseVal, s = el.style, draw = el.getAttribute('data-draw'), t, scale;
+        if (faces) {
+          // A face grows from its centre and its value fades in with it; a row's name comes at the row's start
+          // and its r with its last face; the axis and the notes under it at once.
+          if (/fc-name/.test(c)) { row++; i = -1; start = row ? 700 + (row - 1) * 150 : 0; gap = row ? 40 : 60; }
+          if (/fc-disc/.test(c)) { i++; origin = el.getAttribute('cx') + 'px ' + el.getAttribute('cy') + 'px'; }
+          scale = /fc-(disc|eye|mark)/.test(c);
+          t = [/fc-(disc|eye|mark|val)/.test(c) ? start + i * gap : /fc-r\b/.test(c) ? start + 5 * gap : i < 0 ? start : 0, 400];
+        } else t = (draw || el.getAttribute('data-fade') || '0').split(' ');
+        var frames = [{ opacity: 0 }, { opacity: 1 }];
+        if (draw) {
+          // Chrome measures dashes on a non-scaling stroke in device pixels, so draw with a scaling stroke of the
+          // same width (dashes then follow pathLength="1") and hand back to style.css after.
+          var w = parseFloat(getComputedStyle(el).strokeWidth) / el.getScreenCTM().a;
+          s.vectorEffect = 'none'; s.strokeWidth = w;
+          frames = [{ strokeDasharray: '0 1' }, { strokeDasharray: '1 0' }];
+        }
+        if (scale) { s.transformOrigin = origin; frames[0].transform = 'scale(.85)'; frames[1].transform = 'none'; }
+        var a = el.animate(frames, { delay: lead + +t[0], duration: +t[1] || 450, easing: draw ? 'ease-in-out' : 'ease-out', fill: 'backwards' });
+        a.onfinish = function () { s.vectorEffect = s.strokeWidth = s.transformOrigin = ''; };
+        running.push(a);
+      });
+    }
+
+    try {
+      // A section is in view once its top passes the bottom 8% of the window, and any section on screen at load
+      // joins the entrance. A figure is in view, at load too, once half of it is (a fifth of the faces, which
+      // build from the top) or, if it is too tall for that, once it fills half the window.
+      io = new IntersectionObserver(function (entries) {
+        try {
+          if (calm.matches || !root.classList.contains('motion')) return reveal();
+          root.classList.add('motion-ready');   // tells the safety timeout in <head> that this script runs
+          entries.forEach(function (e) {
+            var el = e.target, fig = el.tagName === 'svg', r = e.boundingClientRect;
+            if (fig ? !e.isIntersecting || e.intersectionRect.height + 1 < Math.min(r.height * (el.parentNode.classList.contains('faces') ? .2 : .5), innerHeight * .46)
+                : first ? r.top >= innerHeight || r.bottom <= 0 : !e.isIntersecting) return;
+            io.unobserve(el);
+            if (fig) return play(el, first ? 400 : 0);
+            if (first) el.style.animationDelay = 350 + 100 * n++ + 'ms';
+            el.classList.add('in');
+          });
+          first = false;
+        } catch (err) { reveal(); }
+      }, { rootMargin: '0px 0px -8% 0px', threshold: [0, .1, .2, .3, .4, .5] });
+      [].forEach.call(document.querySelectorAll('main .section, .fig svg'), function (el) { io.observe(el); });
+      // Keyboard focus shows its section at once, without the fade.
+      addEventListener('focusin', function (e) {
+        var s = e.target.closest && e.target.closest('main .section');
+        if (s && root.classList.contains('motion')) { io.unobserve(s); s.style.animation = 'none'; s.classList.add('in'); }
+      });
+      addEventListener('beforeprint', reveal);
+      matchMedia('print').addListener(function (m) { if (m.matches) reveal(); });
+      calm.onchange = reveal;
+    } catch (err) { reveal(); }
   })();
   </script>
 </body>

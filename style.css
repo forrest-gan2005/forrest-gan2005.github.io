@@ -1,0 +1,359 @@
+/* Huangsheng Gan — homepage
+   Type: Newsreader for text (plus a light display cut for the name), Public Sans for small capitals.
+   Colour: the custom properties below, light first, then dark. The figures use the same tokens. */
+
+/* ---------- Colour ---------- */
+/* --paper is repeated in the two <meta name="theme-color"> tags in index.html. */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+  --paper: #f7f4ee;
+  --ink: #1c1915;
+  --text: #2b2722;
+  --muted: #6b6357;
+  --rule: #ddd5c8;
+  --fig-line: #958c7e;
+  --wash: #efe2da;
+  --accent: #a3361d;
+  --selection: #ecd6cb;
+}
+/* Dark is written twice, for the system setting and for the manual Dark choice: change both. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #131210;
+    --ink: #f0ebe2;
+    --text: #d6d0c5;
+    --muted: #9d9589;
+    --rule: #2e2b26;
+    --fig-line: #666056;
+    --wash: #2f221c;
+    --accent: #e8866a;
+    --selection: #4a2b21;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #131210;
+  --ink: #f0ebe2;
+  --text: #d6d0c5;
+  --muted: #9d9589;
+  --rule: #2e2b26;
+  --fig-line: #666056;
+  --wash: #2f221c;
+  --accent: #e8866a;
+  --selection: #4a2b21;
+}
+
+/* ---------- Type ---------- */
+/* Local fallbacks sized to Newsreader's metrics, so text does not jump when the web fonts arrive. */
+@font-face { font-family: "Newsreader Fallback"; src: local("Georgia"); size-adjust: 95.9%; ascent-override: 76.6%; descent-override: 27.6%; line-gap-override: 0%; }
+@font-face { font-family: "Newsreader Fallback"; font-style: italic; src: local("Georgia Italic"), local("Georgia-Italic"); size-adjust: 88.2%; ascent-override: 83.3%; descent-override: 30%; line-gap-override: 0%; }
+@font-face { font-family: "Newsreader Display Fallback"; src: local("Georgia"); size-adjust: 97.7%; ascent-override: 75.2%; descent-override: 27.1%; line-gap-override: 0%; }
+
+:root {
+  --serif: "Newsreader", "Newsreader Fallback", Georgia, serif;
+  --display: "Newsreader", "Newsreader Display Fallback", Georgia, serif;
+  --sans: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --math: "STIX Two Text", STIXGeneral, Cambria, "STIX Two Math", "Cambria Math", "Times New Roman", serif;   /* true italics first */
+  --body: clamp(1.0625rem, 0.97rem + 0.32vw, 1.1875rem);   /* 17 → 19px */
+  --title: clamp(1.1875rem, 1.04rem + 0.55vw, 1.4375rem);  /* 19 → 23px */
+  --dek: clamp(1.3125rem, 1.02rem + 1.2vw, 1.875rem);      /* 21 → 30px */
+  --name: clamp(3.25rem, 1rem + 7.6vw, 6.75rem);           /* 52 → 108px */
+  --small: 0.71875rem;                                       /* 11.5px small capitals */
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --gap: clamp(1.5rem, 3.4vw, 3rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: var(--body);
+  line-height: 1.55;
+  font-kerning: normal;
+  font-variant-numeric: proportional-nums;
+  hanging-punctuation: first allow-end last;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+p, li, dd, figcaption { text-wrap: pretty; }
+
+/* Links (email, GitHub, Code) are in the accent with an underline of the same colour, so they read as links
+   at a glance; keep --accent at 4.5:1 or more against --paper in both themes. Hover turns the text to ink
+   above a heavier underline; keyboard focus adds a ring. */
+a {
+  color: var(--accent);
+  text-decoration-line: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: max(1px, 0.06em);
+  text-underline-offset: 0.22em;
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+a:hover { color: var(--ink); text-decoration-color: var(--accent); text-decoration-thickness: max(2px, 0.1em); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+/* Arrow after links to other sites: <span class="ext" aria-hidden="true"><svg>…</svg></span> inside the link.
+   Drawn, not typed, because the text fonts have no arrow; inline-block keeps it out of the underline. */
+.ext { display: inline-block; width: 0.7em; height: 0.7em; margin-left: 0.18em; }
+.ext svg { display: block; width: 100%; height: 100%; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.35; }
+::selection { background: var(--selection); color: var(--ink); }
+
+.role .sep {   /* punctuation for screen readers and copy-paste; the role is set as stacked lines */
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.nowrap { white-space: nowrap; }
+.skip {
+  position: absolute; left: var(--gutter); top: 0.75rem; z-index: 1;
+  padding: 0.6rem 0.8rem; background: var(--ink); color: var(--paper);
+  text-decoration: none; transform: translateY(-300%);
+}
+.skip:focus { transform: none; }
+
+/* Small capitals: labels, metadata, navigation, figure numbers */
+.label, .meta, .nav, .theme button, .reach dt, .colophon, .skip, .fig figcaption::before {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: var(--small);
+  line-height: 1.5;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+.label { color: var(--ink); }
+.skip, .skip:hover { color: var(--paper); }
+
+/* ---------- Layout grid ----------
+   Phone: one column. Tablet: a label column beside the text.
+   Desktop: label column + three equal columns (text spans two; notes and figures take the third). */
+.wrap { width: 100%; max-width: 80rem; margin-inline: auto; padding-inline: var(--gutter); }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr); column-gap: var(--gap); }
+
+@media (min-width: 46em) {
+  .grid { grid-template-columns: 10.5rem minmax(0, 1fr); }
+  .grid > * { grid-column: 2; max-width: 38rem; }
+  .grid > .label, .grid > .label-group, .intro > .role { grid-column: 1; }
+  .intro > h1 { grid-column: 1 / -1; max-width: none; }
+  .intro > .dek { max-width: none; }
+}
+@media (min-width: 68em) {
+  .grid { grid-template-columns: 10.5rem repeat(3, minmax(0, 1fr)); }
+  .grid > * { grid-column: 2 / -1; max-width: none; }
+  .intro > .lede { grid-column: 2 / span 2; }
+  .intro > .reach { grid-column: 4; }
+}
+
+/* ---------- Masthead ---------- */
+/* Both groups wrap, so added links (CV, Scholar) push the theme switch to a second line on phones. */
+.masthead {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0 1rem;
+  padding-top: 0.75rem; padding-bottom: 0.75rem;
+}
+.nav { display: flex; flex-wrap: wrap; margin-left: -0.5rem; }
+.nav a, .theme button {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 2.75rem; min-height: 2.75rem; padding: 0 0.5rem;
+}
+.nav a { white-space: nowrap; text-underline-offset: 0.55em; }   /* the same line as the theme switch underline */
+.nav a:focus-visible, .theme button:focus-visible { outline-offset: -4px; }   /* hug the label, not the 44px target */
+@media (max-width: 22.5em) {   /* very narrow phones: keep both groups on one line */
+  .nav a, .theme button { padding: 0 0.3rem; letter-spacing: 0.1em; }
+  .nav { margin-left: -0.3rem; }
+  .js .theme { margin-right: -0.3rem; }
+}
+
+/* Colour theme switch: shown only when JavaScript runs (the <head> script adds .js) */
+.theme { display: none; margin-left: auto; margin-right: -0.5rem; }
+.js .theme { display: flex; }
+.theme button {
+  margin: 0; border: 0; background: none; cursor: pointer;
+  text-decoration: underline 1px transparent; text-underline-offset: 0.55em;
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+.theme button:hover { color: var(--ink); }
+/* The current choice follows data-theme, which is set before first paint */
+:root:not([data-theme]) .theme [data-theme-choice="auto"],
+:root[data-theme="light"] .theme [data-theme-choice="light"],
+:root[data-theme="dark"] .theme [data-theme-choice="dark"] {
+  color: var(--ink);
+  text-decoration-color: var(--accent);
+}
+
+/* ---------- Introduction ---------- */
+.intro { padding-top: clamp(1.75rem, 9vh - 1.5rem, 6rem); align-items: baseline; }
+.intro h1 {
+  font-family: var(--display);
+  font-size: var(--name);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0 0 clamp(1.5rem, 4vw, 2.75rem) -0.045em;   /* optical alignment of the H */
+}
+.role { margin-bottom: 1.25rem; font-size: 1rem; line-height: 1.45; color: var(--ink); }
+.role span { display: block; white-space: nowrap; }
+.dek {
+  font-size: var(--dek);
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.dek em { color: var(--accent); }   /* rubricated, as on a two-colour title page */
+.lede { margin-top: clamp(1.25rem, 2.6vw, 2rem); }
+.lede p + p { margin-top: 0.75em; }
+.lede p:last-child { text-wrap: balance; }   /* no two-word last line under the invitation */
+
+/* Contact details: label and value rows, beside the introduction and again in Contact */
+.reach { display: grid; gap: 0.5rem; }
+.intro > .reach { margin-top: 1.75rem; }
+.reach div { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 1rem; }
+.reach dt { flex: 0 0 4.25rem; }
+.reach dd { color: var(--ink); overflow-wrap: anywhere; }
+@media (pointer: coarse) {   /* touch screens: taller tap targets, same look (with a mouse, the focus ring then hugs the text) */
+  .reach a, .contact a { padding-block: 0.4rem; }
+}
+@media (max-width: 22.5em) {   /* very narrow phones: label above value in every row */
+  .reach div { display: block; }
+}
+@media (min-width: 46em) {
+  .role { margin: 0; }
+}
+@media (min-width: 68em) {   /* beside the introduction: in the margin column, at the size of the role opposite */
+  .intro > .reach { margin-top: clamp(1.25rem, 2.6vw, 2rem); gap: 0.9rem; align-self: start; }
+  .intro > .reach div { display: block; }
+  .intro > .reach dd { margin-top: 0.1rem; font-size: 1rem; }
+}
+
+/* ---------- Sections ---------- */
+.section {
+  margin-top: clamp(3.25rem, 7vw, 5.25rem);
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--rule);
+  align-items: baseline;
+}
+.label-group, .section > .label { margin-bottom: 1.5rem; }
+@media (min-width: 46em) {
+  .label-group, .section > .label { margin-bottom: 0; }
+}
+.side-note { margin-top: 0.35rem; font-size: 0.9375rem; font-style: italic; line-height: 1.45; color: var(--muted); }
+
+/* Research interests */
+.interests { display: grid; gap: 1.75rem; }
+.interests h3 { font-size: var(--title); font-weight: 400; font-style: italic; line-height: 1.25; color: var(--ink); }
+.interests p { margin-top: 0.4rem; font-size: 0.9375em; line-height: 1.5; }
+@media (min-width: 68em) {   /* headings and paragraphs share rows, so the three columns stay level */
+  .interests { grid-template-columns: subgrid; grid-template-rows: auto auto; gap: 0 var(--gap); align-items: baseline; }
+  .interests li { display: grid; grid-row: span 2; grid-template-rows: subgrid; }
+  .interests h3 { font-size: 1.25rem; }   /* one line in the narrow columns; the paper titles stay the larger size */
+}
+
+/* Entries: papers, projects, education. One <li class="entry"> each. */
+.entries { display: grid; row-gap: clamp(2.25rem, 5vw, 3.25rem); }
+.entry h3 {
+  font-size: var(--title);
+  font-weight: 400;
+  line-height: 1.22;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.entry .meta { margin-top: 0.45rem; }
+.entry > p:not(.meta) { margin-top: 0.6rem; }
+.status.is-review { color: var(--accent); }
+@media (pointer: coarse) {
+  .meta a { padding-block: 0.5rem; }   /* larger tap target, same look */
+}
+
+/* Paper numbers hang in the gutter */
+ol.entries { counter-reset: paper; }
+ol.entries > .entry { counter-increment: paper; position: relative; padding-left: 1.6rem; }
+ol.entries > .entry::before {
+  content: counter(paper);
+  position: absolute; left: 0; top: 0;
+  font-size: var(--title); line-height: 1.22;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+@media (min-width: 46em) {
+  ol.entries > .entry { padding-left: 0; }
+  ol.entries > .entry::before { left: auto; right: 100%; margin-right: 1rem; }
+}
+
+/* Desktop: title and summary across two columns; status and figure stacked in the margin column.
+   The title spans rows 1–2, so the figure starts right under the status however long the title is. */
+@media (min-width: 68em) {
+  .entries, .entry { grid-template-columns: subgrid; }
+  .entry { display: grid; grid-template-rows: auto auto 1fr; grid-column: 1 / -1; column-gap: var(--gap); align-items: baseline; }
+  .entry > * { grid-column: 1 / span 2; }
+  .entry > h3 { grid-row: 1 / span 2; }
+  .entry > .meta { grid-column: 3; grid-row: 1; margin-top: 0; }
+  .entry > .fig { grid-column: 3; grid-row: 2 / span 2; align-self: start; margin-top: 1.25rem; }
+}
+
+/* ---------- Figures ----------
+   Inline SVG, drawn with the f-* classes below so they follow the theme. Numbered automatically. */
+main { counter-reset: fig; }
+.fig { counter-increment: fig; margin-top: 1.75rem; max-width: 20rem; }
+.fig svg { display: block; width: 100%; height: auto; overflow: visible; }
+.fig figcaption { margin-top: 0.85rem; font-size: 0.9375rem; line-height: 1.45; color: var(--muted); }
+.fig figcaption::before { content: "Fig. " counter(fig); margin-right: 0.6em; color: var(--ink); }
+.fig b { font-weight: inherit; font-style: italic; color: var(--ink); }
+.math { font-family: var(--math); font-size: 1.02em; white-space: nowrap; }
+@media (min-width: 46em) and (max-width: 67.99em) {
+  .fig { max-width: none; display: grid; grid-template-columns: minmax(0, 17.5rem) minmax(0, 1fr); column-gap: 1.75rem; align-items: end; }
+  .fig figcaption { margin-top: 0; }
+}
+@media (min-width: 68em) {
+  .fig { max-width: none; }
+}
+
+.fig path, .fig circle { vector-effect: non-scaling-stroke; }
+.f-wash { fill: var(--wash); }
+.f-guide { fill: none; stroke: var(--fig-line); stroke-width: 1; }
+.f-tick { fill: none; stroke: var(--muted); stroke-width: 0.75; }
+.f-axis { fill: none; stroke: var(--ink); stroke-width: 1; }
+.f-ray { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 3; }
+.f-step { fill: none; stroke: var(--accent); stroke-width: 1.75; }
+.f-head { fill: var(--accent); }
+.f-dot { fill: var(--ink); }
+.f-zero { fill: none; stroke: var(--fig-line); stroke-width: 1; stroke-dasharray: 2 3; }
+.f-line { fill: none; stroke: var(--ink); stroke-width: 1.4; }
+.f-line-acc { stroke: var(--accent); stroke-width: 1.6; }
+.f-hollow { fill: var(--paper); stroke: var(--accent); stroke-width: 1.5; }
+.f-math { font-family: var(--math); font-style: italic; font-size: 14px; fill: var(--ink); }
+.f-up { font-style: normal; }
+.f-word { font-family: var(--serif); font-style: italic; font-size: 14px; fill: var(--ink); }
+.f-acc { fill: var(--accent); }
+.f-mute { fill: var(--muted); }
+@media (min-width: 68em) {   /* the margin column can be narrower than the drawing: keep labels at 11px or more */
+  .f-math, .f-word { font-size: 15px; }
+}
+
+/* ---------- Contact and colophon ---------- */
+.contact .email { font-size: var(--dek); line-height: 1.25; color: var(--ink); overflow-wrap: anywhere; }
+.contact .reach { margin-top: 0.9rem; }
+.colophon { margin-top: clamp(4rem, 9vw, 7rem); padding-bottom: 3rem; }
+.colophon p { padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+
+/* ---------- Motion and print ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+@media print {   /* always dark ink on white, whatever the screen theme */
+  :root, :root[data-theme="light"], :root[data-theme="dark"], :root:not([data-theme="light"]) {
+    color-scheme: light;
+    --paper: #fff; --ink: #000; --text: #1a1a1a; --muted: #555; --rule: #ccc;
+    --fig-line: #888; --wash: #eee; --accent: #a3361d;
+  }
+  .masthead, .skip, .ext { display: none; }
+  a { color: inherit; text-decoration: none; }
+  .intro { padding-top: 0; }
+  .section { margin-top: 2rem; }
+  .entry, .fig, .interests li { break-inside: avoid; }
+  .label, h3 { break-after: avoid; }
+}

@@ -103,3 +103,16 @@ domain huangshenggan.com (the `CNAME` file; HTTPS is under Settings → Pages). 
 records (Cloudflare, all **DNS only**): four `A` records for `@` → `185.199.108.153`, `185.199.109.153`,
 `185.199.110.153`, `185.199.111.153`, and a `CNAME` for `www` → `forrest-gan2005.github.io`.
 Optional: redirect `hsgan.com` to `https://huangshenggan.com` with a Cloudflare Redirect Rule.
+
+## Site icons
+
+`favicon.svg` is the source: the "HG" monogram, drawn from Newsreader glyph outlines on the accent colour. The other files
+are rasterised from it at fixed sizes and are what browsers, Google Search and phones actually use:
+
+- `favicon.ico`: 16, 32 and 48 px (the 16 and 32 px frames use slightly heavier strokes so they stay legible)
+- `apple-touch-icon.png`: 180 px, square; iOS rounds the corners itself
+- `icon-192.png`, `icon-512.png` and `icon-maskable-512.png` (letters inside Android's safe zone), listed in `site.webmanifest`
+
+If the monogram or the accent colour changes, edit `favicon.svg` and re-export the PNGs and the ICO at the same sizes,
+for example by opening the SVG in a browser at each size and saving a screenshot, or with any SVG-to-PNG tool.
+

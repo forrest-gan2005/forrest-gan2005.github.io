@@ -145,7 +145,7 @@
          title and a one-paragraph summary written for this page; figures are either schematics drawn for this page with the f-* classes
          or, like the faces figure, generated from a paper's data by a script kept with that paper.
          At publication, add the venue and the arXiv link.
-         To add a paper, copy the third <li> block (it has no figure) and edit it. Keep one summary paragraph.
+         To add a paper, copy an <li> block, delete its <figure> unless you draw a new one, and edit it. Keep one summary paragraph.
            status  <span class="status">In preparation</span>, <span class="status">Manuscript</span>, or
                    <span class="status is-review">Under review</span>; at publication, the venue name takes its place
                    and the year after the dot stays: <span class="status">Venue</span> · 2026
@@ -313,6 +313,26 @@
           <h3>Do LLM assistants act on what they remember about users?</h3>
           <p class="meta"><span class="status">Manuscript</span> · 2026</p>
           <p>Models that remember details about their users can repeat them back when asked, yet seldom act on them when a new request quietly calls for it. I&nbsp;suggest simple checks for whether a model is truly drawing on what it remembers, rather than giving advice that would suit anyone or simply reacting to a longer prompt.</p>
+          <figure class="fig">
+            <svg viewBox="0 14 272 140" width="272" height="140" role="img" aria-label="Diagram: a fact stored in the assistant’s memory reaches a direct question about it, but a dashed line toward a later request that depends on it stops short.">
+              <text class="f-word f-mute" data-fade="0 300" x="8" y="36">Memory</text>
+              <path class="f-guide" pathLength="1" data-draw="0 450" d="M14 46H92A6 6 0 0 1 98 52V118A6 6 0 0 1 92 124H14A6 6 0 0 1 8 118V52A6 6 0 0 1 14 46Z"/>
+              <path class="f-guide" pathLength="1" data-draw="250 300" d="M20 64H86"/>
+              <path class="f-guide" pathLength="1" data-draw="300 300" d="M20 106H78"/>
+              <path class="f-step" pathLength="1" data-draw="400 300" d="M20 85H70"/>
+              <circle class="f-dot" data-fade="550 200" cx="74" cy="85" r="2.4"/>
+              <path class="f-step" pathLength="1" data-draw="700 450" d="M78 85C114 85 118 41 146 41"/>
+              <path class="f-head" data-fade="1100 150" d="M153 41L146 37.7V44.3Z"/>
+              <path class="f-guide" data-fade="900 300" d="M162 22H264A6 6 0 0 1 270 28V54A6 6 0 0 1 264 60H162A6 6 0 0 1 156 54V28A6 6 0 0 1 162 22Z"/>
+              <text class="f-word" data-fade="950 300" x="213" y="46" text-anchor="middle">asked about it</text>
+              <text class="f-word f-acc" data-fade="1150 300" x="114" y="34" text-anchor="middle">recalled</text>
+              <path class="f-ray" data-fade="1350 450" d="M78 85C108 85 112 129 136 129"/>
+              <path class="f-guide" data-fade="1300 300" d="M162 110H264A6 6 0 0 1 270 116V142A6 6 0 0 1 264 148H162A6 6 0 0 1 156 142V116A6 6 0 0 1 162 110Z"/>
+              <text class="f-word" data-fade="1350 300" x="213" y="134" text-anchor="middle">needs it, unasked</text>
+              <text class="f-word f-mute" data-fade="1700 300" x="114" y="146" text-anchor="middle">unused</text>
+            </svg>
+            <figcaption><b>Remembered, not used.</b> Asked about a stored fact, the assistant can recall it; a later request that quietly relies on the fact is often answered as if it had never been stored.</figcaption>
+          </figure>
         </li>
       </ol>
     </section>

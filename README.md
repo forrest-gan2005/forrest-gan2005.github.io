@@ -37,7 +37,7 @@ Plain HTML + CSS, no build step. Open `index.html` in a browser to preview.
 ## Adding a paper
 
 Papers are `<li class="entry">` blocks inside `<ol class="entries">` in the Research section. They are
-numbered automatically. Copy the third block (it has no figure) and edit it:
+numbered automatically. Copy a block, delete its `<figure>` (unless you draw a new one) and edit it:
 
 ```html
 <li class="entry">

@@ -51,7 +51,7 @@ numbered automatically. Copy a block, delete its `<figure>` (unless you draw a n
   `<span class="status is-review">Under review</span>` (shown in the accent colour).
 - **One summary paragraph** per paper keeps the desktop layout tidy.
 - **Figure** (optional): add a `<figure class="fig">` with an inline `<svg>` and a `<figcaption>` after
-  the summary, as in the first two papers. It is either a schematic drawn for this page or, like Fig. 2 (the faces), generated from the paper's data: that one comes from `paper/scripts/make_faces_web.py` in the paper's own repo, which prints the `<figure>` and the `fc-*` CSS at the end of `style.css`; rerun it rather than editing by hand. Figures are numbered automatically (Fig. 1, Fig. 2, ...), so copying, reordering or
+  the summary, as in the first two papers. It is either a schematic drawn for this page or generated from the paper's data. Fig. 2 is currently the line schematic; its data version (the faces) is kept ready: it comes from `paper/scripts/make_faces_web.py` in the paper's own repo, which prints the `<figure>` and the `fc-*` CSS at the end of `style.css`; rerun it rather than editing by hand. Figures are numbered automatically (Fig. 1, Fig. 2, ...), so copying, reordering or
   deleting papers never misnumbers them. Draw with the `f-*` classes in `style.css` so the figure
   follows the light/dark theme, give the `<svg>` `role="img"` and an `aria-label`, and keep labels as
   live `<text>`.
@@ -83,9 +83,9 @@ A little motion, each piece once, then nothing moves:
   Fig. 1: the radius and both arcs with their labels, then the equal η steps, then the angle on the outer
   circle (θ) and last the one on the inner circle (3θ); the timing is in its markup
   (`data-draw="delay duration"` on a path with `pathLength="1"`, `data-fade="delay duration"` on other
-  parts, in ms). Fig. 2 (the faces): the People row on its own, left to right, then the model rows
-  briskly one after another, each row's r last; its timing is in the motion script, so regenerating the
-  figure keeps it.
+  parts, in ms). Fig. 2 (the line schematic): the Human line draws left to right through zero, then the flat
+  Simulated line, dots appearing along each; timing in its markup. If the faces version is pasted back,
+  its timing is in the motion script (the People row first, then the model rows), so it needs no markup.
 
 The CSS is under "Motion and print" in `style.css`; the script is the second one at the end of
 `index.html`. Nothing is hidden unless that script can run, so the page shows in full without JavaScript,
